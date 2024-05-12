@@ -1,5 +1,11 @@
 ### A module for managing BEM **M**odifiers. 
 
+To install</br>
+``` npm i bem-mod```
+
+To  use</br>
+``` import bemMod from 'bem-mod'; ```
+
 #### Problem Statement
 BEM class names can be lengthy for a significant amount of additional typing which is compouned when an element has multiple modifiers applied. This ESM module aims to reduce the 
 amount of duplicate code needed to juggle those modifiers.
