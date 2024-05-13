@@ -53,7 +53,12 @@ bemModCollapsed(elmArticle, false);
 ~45% reduction in characters typed
 
 
-##### bemMod also supports toggling the modifier by passing null:
+##### bemMod also supports toggling the modifier
+Done by passing null for the 'is' parameter or using the bemToggle functions:
 ```
+bemMod(elmArticle, MODIFIER_HIDDEN, null);
 bemModHidden(elmArticle, null);
+// or:
+bemToggle(elmArticle, MODIFIER_HIDDEN);
+bemToggleHidden(elmArticle);
 ```

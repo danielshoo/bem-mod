@@ -1,15 +1,26 @@
 /**
  * @module bemMod
- * @description Per the Frontend coding guidelines, we adhere to using BEM (Block Element Modifier) notation
- * with naming css classes. This module provides a suite of helper functions for managing the modifier portion
+ * @description This module provides a suite of helper functions for managing the modifier portion
  * of BEM classes.
  */
 
 const MODIFIER_COLLAPSED = 'collapsed';
+const MODIFIER_EXPANDED = 'expanded';
 const MODIFIER_HIDDEN = 'hidden';
+const MODIFIER_DISABLED = 'disabled';
+const MODIFIER_SELECTED = 'selected';
+const MODIFIER_INVALID = 'invalid';
+const MODIFIER_FOCUSED = 'focused';
+
+
 const MODIFIERS = {
     COLLAPSED: MODIFIER_COLLAPSED,
     HIDDEN: MODIFIER_HIDDEN,
+    DISABLED: MODIFIER_DISABLED,
+    SELECTED: MODIFIER_SELECTED,
+    INVALID: MODIFIER_INVALID,
+    FOCUSED: MODIFIER_FOCUSED,
+    EXPANDED: MODIFIER_EXPANDED,
 };
 
 export { MODIFIERS };
@@ -53,6 +64,16 @@ export default function bemMod(elm, modifier, is, rootClassNameOverride) {
 }
 
 /**
+ * @description Removes the modifier if present, adds it if not.
+ * @param {HTMLElement|HTMLElement[]} elm
+ * @param {string} modifier
+ * @param {?string} rootClassNameOverride
+ */
+export function bemToggle(elm, modifier, rootClassNameOverride = null) {
+    bemMod(elm, modifier, null, rootClassNameOverride);
+}
+
+/**
  * @description Add or remove the hidden modifier from an element with a shown element not having the hidden modifier.
  * @param {HTMLElement|HTMLElement[]} elm
  * @param {?boolean} isToBeShown
@@ -82,7 +103,127 @@ export function bemModCollapsed(elm, isToBeCollapsed = true, rootClassNameOverri
     bemMod(elm, MODIFIER_COLLAPSED, isToBeCollapsed, rootClassNameOverride);
 }
 
+/**
+ * @description Check if a modifier is present on en element
+ * @param {HTMLElement|HTMLElement[]} elm
+ * @param {string} modifier
+ * @param {?string} rootClassNameOverride
+ * @return {boolean}
+ */
 export function hasBemModifier(elm, modifier, rootClassNameOverride = null) {
     const rootClassName = rootClassNameOverride ?? elm.classList[0].replace(/--.*/, '');
     return elm.classList.contains(rootClassName + '--' + modifier);
+}
+
+/**
+ * @description Add or remove the disabled modifier from an element.
+ * @param {HTMLElement|HTMLElement[]} elm
+ * @param {?boolean} isToBeDisabled
+ * @param {?string} rootClassNameOverride
+ */
+export function bemModDisabled(elm, isToBeDisabled = true, rootClassNameOverride = null) {
+    bemMod(elm, MODIFIER_DISABLED, isToBeDisabled, rootClassNameOverride);
+}
+
+/**
+ * @description Add or remove the selected modifier from an element.
+ * @param {HTMLElement|HTMLElement[]} elm
+ * @param {?boolean} isSelected
+ * @param {?string} rootClassNameOverride
+ */
+export function bemModSelected(elm, isSelected = true, rootClassNameOverride = null) {
+    bemMod(elm, MODIFIER_SELECTED, isSelected, rootClassNameOverride);
+}
+
+/**
+ * @description Add or remove the invalid modifier from an element.
+ * @param {HTMLElement|HTMLElement[]} elm
+ * @param {?boolean} isInvalid
+ * @param {?string} rootClassNameOverride
+ */
+export function bemModInvalid(elm, isInvalid = true, rootClassNameOverride = null) {
+    bemMod(elm, MODIFIER_INVALID, isInvalid, rootClassNameOverride);
+}
+
+/**
+ * @description Add or remove the focused modifier from an element.
+ * @param {HTMLElement|HTMLElement[]} elm
+ * @param {?boolean} isFocused
+ * @param {?string} rootClassNameOverride
+ */
+export function bemModFocused(elm, isFocused = true, rootClassNameOverride = null) {
+    bemMod(elm, MODIFIER_FOCUSED, isFocused, rootClassNameOverride);
+}
+
+/**
+ * @description Add or remove the expanded modifier from an element.
+ * @param {HTMLElement|HTMLElement[]} elm
+ * @param {?boolean} isExpanded
+ * @param {?string} rootClassNameOverride
+ */
+export function bemModExpanded(elm, isExpanded = true, rootClassNameOverride = null) {
+    bemMod(elm, MODIFIER_EXPANDED, isExpanded, rootClassNameOverride);
+}
+
+/**
+ * @description Toggle the hidden modifier on an element.
+ * @param {HTMLElement|HTMLElement[]} elm
+ * @param {?string} rootClassNameOverride
+ */
+export function bemToggleHidden(elm, rootClassNameOverride = null) {
+    bemToggle(elm, MODIFIER_HIDDEN, rootClassNameOverride);
+}
+
+/**
+ * @description Toggle the collapsed modifier on an element.
+ * @param {HTMLElement|HTMLElement[]} elm
+ * @param {?string} rootClassNameOverride
+ */
+export function bemToggleCollapsed(elm, rootClassNameOverride = null) {
+    bemToggle(elm, MODIFIER_COLLAPSED, rootClassNameOverride);
+}
+
+/**
+ * @description Toggle the disabled modifier on an element.
+ * @param {HTMLElement|HTMLElement[]} elm
+ * @param {?string} rootClassNameOverride
+ */
+export function bemToggleDisabled(elm, rootClassNameOverride = null) {
+    bemToggle(elm, MODIFIER_DISABLED, rootClassNameOverride);
+}
+
+/**
+ * @description Toggle the selected modifier on an element.
+ * @param {HTMLElement|HTMLElement[]} elm
+ * @param {?string} rootClassNameOverride
+ */
+export function bemToggleSelected(elm, rootClassNameOverride = null) {
+    bemToggle(elm, MODIFIER_SELECTED, rootClassNameOverride);
+}
+
+/**
+ * @description Toggle the invalid modifier on an element.
+ * @param {HTMLElement|HTMLElement[]} elm
+ * @param {?string} rootClassNameOverride
+ */
+export function bemToggleInvalid(elm, rootClassNameOverride = null) {
+    bemToggle(elm, MODIFIER_INVALID, rootClassNameOverride);
+}
+
+/**
+ * @description Toggle the focused modifier on an element.
+ * @param {HTMLElement|HTMLElement[]} elm
+ * @param {?string} rootClassNameOverride
+ */
+export function bemToggleFocused(elm, rootClassNameOverride = null) {
+    bemToggle(elm, MODIFIER_FOCUSED, rootClassNameOverride);
+}
+
+/**
+ * @description Toggle the expanded modifier on an element.
+ * @param {HTMLElement|HTMLElement[]} elm
+ * @param {?string} rootClassNameOverride
+ */
+export function bemToggleExpanded(elm, rootClassNameOverride = null) {
+    bemToggle(elm, MODIFIER_EXPANDED, rootClassNameOverride);
 }
