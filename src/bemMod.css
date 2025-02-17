@@ -1,0 +1,21 @@
+/*
+*  This scss library is available to provide basic meaning (in terms of styling) for the packaged BEM modifiers. You're encouraged to extend
+*  or override these styles.
+*/
+
+[class*="--hidden"] {
+    display: none;
+}
+
+[class$="--collapsed"] {
+    max-height: 0;
+    overflow: hidden;
+}
+
+[class*="--visible"] {
+    opacity: 1;
+}
+
+[class*="--invisible"] {
+    opacity: 0;
+}
