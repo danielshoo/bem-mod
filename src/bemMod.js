@@ -45,7 +45,7 @@ function bemMod(elm, modifier, is, rootClassNameOverride) {
     // Normalize the order of class names such that:
     // 1. BEM modifiers override the root class name
     // 2. Client code has final say where a class name has a matching specificity with  BEM classname.
-    const fnIsBemModifiedClassName = (className) => rootClassName + '--' === className.slice(0, rootClassName.length + 3);
+    const fnIsBemModifiedClassName = (className) => className.startsWith(rootClassName + '--');
     const bemModifiedClassNames = Array.from(elm.classList).filter(fnIsBemModifiedClassName);
     const reorderedClassNames = [rootClassName, ...bemModifiedClassNames, ...Array.from(elm.classList).filter(fnIsBemModifiedClassName)];
     elm.className = reorderedClassNames.join(' ');
