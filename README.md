@@ -23,12 +23,12 @@ Consider the case that a user selected a wider reading size for an article, but 
 ```
 
 ### BemMod API
-bemMod(element: HTMLElement, modifier: string, add: boolean = true): void<br>
-bemMod.set<span class='ref-to-modifier-const'>Modifier</span>(element: HTMLElement): void<br>
-bemMod.unset<span  class='ref-to-modifier-const'>Modifier</span>(element: HTMLElement): void<br>
-bemMod.toggle<span  class='ref-to-modifier-const'>Modifier</span>(element: HTMLElement): void<br>
+bemMod(element: HTMLElement, modifier: string, is: boolean = true, rootClassName: string = null): bemModForElement<br>
+bemMod.set<span class='ref-to-modifier-const'>Modifier</span>(element: HTMLElement): bemModForElement<br>
+bemMod.unset<span  class='ref-to-modifier-const'>Modifier</span>(element: HTMLElement): bemModForElement<br>
+bemMod.toggle<span  class='ref-to-modifier-const'>Modifier</span>(element: HTMLElement): bemModForElement<br>
 
-_where <span class='ref-to-modifier-const'>Modifier</span> is any of the following
+Replace <span class='ref-to-modifier-const'>Modifier</span> for any of the following:
 <ul id="modifiers" style="transform: scale(0.9); padding: 0; margin: 0">
     <li>Collapsed</li>
     <li>Expanded</li>
@@ -59,12 +59,12 @@ bemMod(elmArticle, '2x-wide', false); // Removes the '2x-wide' modifier
 ```
 
 ### Classlist Normalization
-As bemMod add or removes classes, it maintains the following order of classnames on the target element:
-block__element, block__element--modifier-1, block__element--modifier-2, ..., followed by any other classes added by client code.
+As bemMod adds or removes classes, it maintains the following order of classnames on the target element:
+block__element, block__element--modifier-1, block__element--modifier-2, ..., block__element--modifier-N followed by any other classes added by client code.
 
-An element with classname `calculator__1-button` and the modifier `pressed` and a client-side set class of `btn` will maintain the order:
+An element with classname `calculator__1-button`, the modifier `pressed` and some other class name (.btn for this example) set by client-side code will maintain the order:
 ```
-calculator__1-button calculator__1-button--pressed btn
+calculator__button calculator__button--pressed calculator__1-animating btn
 ```
 
 This ensures css-cascading is done in the order one would expect. Base-styling, overridden by modifiers, overridden by client-side styling.
